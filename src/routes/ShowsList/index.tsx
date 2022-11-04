@@ -1,7 +1,7 @@
 import {CardSeparator, ShowCard} from '@components';
 import {Route} from '@constants';
-import {ShowsStackParamList} from '@navigation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {ShowsStackParamList} from '@navigation';
 import React from 'react';
 import {
   ActivityIndicator,
@@ -11,12 +11,16 @@ import {
   View,
 } from 'react-native';
 import {useShowsList} from './useShowsList';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type Props = NativeStackScreenProps<ShowsStackParamList, Route.ShowsList>;
 
 export const ShowsList = (props: Props) => {
   const {navigation} = props;
+
   const {isInitialLoading, data, fetchNextPage, error} = useShowsList();
+
+  const {top} = useSafeAreaInsets();
 
   if (isInitialLoading) {
     return (
@@ -37,6 +41,7 @@ export const ShowsList = (props: Props) => {
   return (
     <FlatList
       data={data?.pages.map(page => page.shows).flat()}
+      // ListHeaderComponent={() => <Text>Teste</Text>}
       renderItem={({item}) => (
         <ShowCard
           premiered={item.premiered}
@@ -49,7 +54,12 @@ export const ShowsList = (props: Props) => {
           }
         />
       )}
-      contentContainerStyle={styles.contentContainerStyle}
+      contentContainerStyle={[
+        styles.contentContainerStyle,
+        {
+          paddingTop: top,
+        },
+      ]}
       onEndReached={() => fetchNextPage()}
       onEndReachedThreshold={0.5}
       showsVerticalScrollIndicator={false}

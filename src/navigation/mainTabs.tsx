@@ -8,7 +8,10 @@ const Tab = createBottomTabNavigator();
 
 export const MainTabs = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Tab.Screen name={Route.Shows} component={ShowsStack} />
       <Tab.Screen name={Route.Favorites} component={FavoriteShowsStack} />
     </Tab.Navigator>
