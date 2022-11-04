@@ -12,4 +12,7 @@ export type Show = {
   };
   summary: string;
   premiered: string;
+  rating: {
+    average: number;
+  };
 };

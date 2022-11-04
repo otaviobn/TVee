@@ -21,3 +21,11 @@ export const searchShows = async ({query = ''}) => {
     shows: data.map(item => item.show),
   };
 };
+
+export const getShow = async ({showId}: {showId: number}) => {
+  const {data} = await axios.get<Show>(`${showsApiBaseUrl}/shows/${showId}`);
+
+  return {
+    show: data,
+  };
+};
