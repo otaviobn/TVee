@@ -7,7 +7,10 @@ const Stack = createNativeStackNavigator();
 
 export const ShowsStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Stack.Screen name={Route.ShowsList} component={ShowsList} />
       <Stack.Screen name={Route.ShowDetails} component={ShowDetails} />
     </Stack.Navigator>
