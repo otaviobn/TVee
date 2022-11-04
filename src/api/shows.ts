@@ -11,3 +11,13 @@ export const getShows = async ({pageParam = 0}) => {
     nextPage: data.length ? pageParam + 1 : undefined,
   };
 };
+
+export const searchShows = async ({query = ''}) => {
+  const {data} = await axios.get<{score: number; show: Show}[]>(
+    `${showsApiBaseUrl}/search/shows?q=${query}`,
+  );
+
+  return {
+    shows: data.map(item => item.show),
+  };
+};

@@ -1,30 +1,45 @@
-import {useInfiniteQuery} from '@tanstack/react-query';
-import {getShows} from '@api';
+import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
+import {getShows, searchShows} from '@api';
+import {useCallback, useMemo, useState} from 'react';
+import debounce from 'lodash.debounce';
 
 export const useShowsList = () => {
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-    isInitialLoading,
-  } = useInfiniteQuery({
+  const [query, setQuery] = useState('');
+
+  const fullShowQuery = useInfiniteQuery({
     queryKey: ['shows'],
     queryFn: getShows,
     getNextPageParam: lastPage => lastPage.nextPage,
   });
 
+  const filteredShowsQuery = useQuery(
+    ['showsSearch', query],
+    () => searchShows({query}),
+    {keepPreviousData: true},
+  );
+
+  const setSearchTerm = debounce(setQuery, 1000);
+
+  const fetchNextPage = useCallback(() => {
+    if (!query && fullShowQuery.hasNextPage) {
+      fullShowQuery.fetchNextPage();
+    }
+  }, [query, fullShowQuery]);
+
+  const isError = useMemo(
+    () => fullShowQuery.isError || filteredShowsQuery.isError,
+    [filteredShowsQuery.isError, fullShowQuery.isError],
+  );
+
   return {
-    data,
-    error,
+    isFetchingSearch: filteredShowsQuery.isFetching,
+    shows: query
+      ? filteredShowsQuery.data?.shows
+      : fullShowQuery.data?.pages.map(page => page.shows).flat(),
+    setSearchTerm,
+    searchTerm: query,
     fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-    isInitialLoading,
+    isError,
+    isInitialLoading: fullShowQuery.isInitialLoading,
   };
 };
