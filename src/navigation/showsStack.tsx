@@ -3,7 +3,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Route} from '@constants';
 import {ShowDetails, ShowsList} from '@routes';
 
-const Stack = createNativeStackNavigator();
+export type ShowsStackParamList = {
+  [Route.ShowsList]: undefined;
+  [Route.ShowDetails]: {showId: number};
+};
+
+const Stack = createNativeStackNavigator<ShowsStackParamList>();
 
 export const ShowsStack = () => {
   return (

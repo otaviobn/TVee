@@ -1,5 +1,12 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+  Pressable,
+} from 'react-native';
 
 type Props = {
   name: string;
@@ -11,10 +18,10 @@ type Props = {
 };
 
 export const ShowCard = (props: Props) => {
-  const {coverImage, name, containerStyle, genres, premiered} = props;
+  const {coverImage, name, containerStyle, genres, premiered, onPress} = props;
 
   return (
-    <View style={[styles.constainer, containerStyle]}>
+    <Pressable onPress={onPress} style={[styles.constainer, containerStyle]}>
       <Image style={styles.coverImage} source={{uri: coverImage}} />
       <View>
         <Text style={styles.nameText}>{name}</Text>
@@ -23,7 +30,7 @@ export const ShowCard = (props: Props) => {
         </Text>
         <Text style={styles.genreText}>{genres.join(', ')}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

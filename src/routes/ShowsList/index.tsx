@@ -1,4 +1,7 @@
 import {CardSeparator, ShowCard} from '@components';
+import {Route} from '@constants';
+import {ShowsStackParamList} from '@navigation';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ActivityIndicator,
@@ -9,7 +12,10 @@ import {
 } from 'react-native';
 import {useShowsList} from './useShowsList';
 
-export const ShowsList = () => {
+type Props = NativeStackScreenProps<ShowsStackParamList, Route.ShowsList>;
+
+export const ShowsList = (props: Props) => {
+  const {navigation} = props;
   const {isInitialLoading, data, fetchNextPage, error} = useShowsList();
 
   if (isInitialLoading) {
@@ -38,9 +44,9 @@ export const ShowsList = () => {
           coverImage={item.image.medium}
           name={item.name}
           genres={item.genres}
-          onPress={function (): void {
-            throw new Error('Function not implemented.');
-          }}
+          onPress={() =>
+            navigation.navigate(Route.ShowDetails, {showId: item.id})
+          }
         />
       )}
       contentContainerStyle={styles.contentContainerStyle}
