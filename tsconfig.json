@@ -7,11 +7,11 @@
     "skipLibCheck": true, /* Skip type checking all .d.ts files. */
     "baseUrl": ".",
     "paths": {
-      "@components": ["./src/components/"],
-      "@routes": ["./src/routes/"],
-      "@navigation": ["./src/navigation/"],
-      "@api": ["./src/api/"],
-      "@constants": ["./src/constants/"],
+      "@components": ["src/components"],
+      "@routes": ["src/routes"],
+      "@navigation": ["src/navigation"],
+      "@api": ["src/api"],
+      "@constants": ["src/constants"],
     }
   }
 }
