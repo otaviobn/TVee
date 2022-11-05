@@ -30,7 +30,7 @@ export type ShowEpisode = {
   airdate: string;
   airtime: string;
   rating: {
-    average: string;
+    average: number;
   };
   image: {
     medium: string;

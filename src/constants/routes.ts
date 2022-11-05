@@ -4,4 +4,5 @@ export enum Route {
   FavoriteShows = 'FavoriteShows',
   Shows = 'Shows',
   Favorites = 'Favorites',
+  EpisodeDetails = 'EpisodeDetails',
 }

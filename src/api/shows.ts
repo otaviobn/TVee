@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {showsApiBaseUrl} from '@constants';
-import {ShowEpisode, type Show} from './types';
+import {type ShowEpisode, type Show} from './types';
 import groupBy from 'lodash.groupby';
 
 const groupEpisodesBySeason = (episodes: ShowEpisode[]) => {

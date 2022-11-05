@@ -5,3 +5,4 @@ export * from './EmptySearchShowsList';
 export * from './ShowCover';
 export * from './SectionHeader';
 export * from './EpisodeCard';
+export * from './EpisodeCover';

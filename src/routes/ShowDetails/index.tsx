@@ -29,6 +29,12 @@ export const ShowDetails = (props: Props) => {
       style={styles.container}
       renderItem={({item}) => (
         <EpisodeCard
+          onPress={() =>
+            navigation.navigate(Route.EpisodeDetails, {
+              episodeId: item.id,
+              showName: showQuery.data?.show.name || '',
+            })
+          }
           season={item.season}
           number={item.number}
           coverImage={item.image ? item.image.medium : undefined}
