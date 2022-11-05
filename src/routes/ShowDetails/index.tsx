@@ -2,18 +2,11 @@ import {Route} from '@constants';
 import {ShowsStackParamList} from '@navigation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {
-  ImageBackground,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {StyleSheet, View, useWindowDimensions, SectionList} from 'react-native';
 import {useShowDetails} from './useShowDetails';
 import RenderHtml from 'react-native-render-html';
+import {EpisodeCard, ShowCover} from '@components';
+import {SectionHeader} from '@components';
 
 type Props = NativeStackScreenProps<ShowsStackParamList, Route.ShowDetails>;
 
@@ -25,112 +18,68 @@ export const ShowDetails = (props: Props) => {
     },
   } = props;
 
-  const {showQuery: {data} = {}} = useShowDetails({showId});
+  const {showQuery} = useShowDetails({showId});
 
   const {width} = useWindowDimensions();
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.coverImageContainer}>
-        <ImageBackground
-          blurRadius={15}
-          style={StyleSheet.absoluteFill}
-          source={{uri: data?.show.image?.original}}
+    <SectionList
+      sections={showQuery.data?.show.episodes || []}
+      stickySectionHeadersEnabled={false}
+      style={styles.container}
+      renderItem={({item}) => (
+        <EpisodeCard
+          season={item.season}
+          number={item.number}
+          coverImage={item.image ? item.image.medium : undefined}
+          containerStyle={styles.episodeCardContainer}
+          name={item.name}
         />
-        <View style={[StyleSheet.absoluteFill, styles.coverOverLay]} />
-        <SafeAreaView style={styles.safeAreaView}>
-          <Pressable onPress={navigation.goBack}>
-            <Text style={styles.backButton}>{'<'} Back</Text>
-          </Pressable>
-          <View style={styles.showTitleContainer}>
-            <Text style={styles.nameText}>{data?.show.name}</Text>
-            <Text style={styles.genresText}>
-              {data?.show.genres.join(', ')}
-            </Text>
-            <View style={styles.boxContainer}>
-              <View style={styles.box}>
-                <Text style={styles.boxValue}>{data?.show.status}</Text>
-                <Text style={styles.boxLabel}>Status</Text>
-              </View>
-              <View style={styles.box}>
-                <Text style={styles.boxValue}>
-                  {new Date(data?.show.premiered || '').getFullYear()}
-                </Text>
-                <Text style={styles.boxLabel}>Premiered</Text>
-              </View>
-              <View style={styles.box}>
-                <Text style={styles.boxValue}>{data?.show.rating.average}</Text>
-                <Text style={styles.boxLabel}>Rating</Text>
-              </View>
-            </View>
+      )}
+      renderSectionHeader={({section}) => (
+        <SectionHeader
+          containerStyle={styles.sectionHeaderContainer}
+          title={section.title}
+          extraInfo={`${section.data.length} episodes`}
+        />
+      )}
+      ListHeaderComponent={
+        <>
+          <ShowCover
+            schedule={showQuery.data?.show.schedule}
+            genres={showQuery.data?.show.genres}
+            name={showQuery.data?.show.name}
+            status={showQuery.data?.show.status}
+            premiered={showQuery.data?.show.premiered}
+            average={showQuery.data?.show.rating.average}
+            coverImage={showQuery.data?.show.image.original}
+            onBackPress={navigation.goBack}
+          />
+          <View style={styles.summaryContainer}>
+            <RenderHtml
+              contentWidth={width}
+              source={{html: showQuery.data?.show.summary || ''}}
+            />
           </View>
-        </SafeAreaView>
-      </View>
-      <View style={styles.summaryContainer}>
-        <RenderHtml
-          contentWidth={width}
-          source={{html: data?.show.summary || ''}}
-        />
-      </View>
-    </ScrollView>
+        </>
+      }
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  coverImageContainer: {
-    height: 500,
-    justifyContent: 'flex-end',
-  },
   container: {
     flex: 1,
   },
-  coverOverLay: {
-    backgroundColor: 'rgba(0,0,0,0.65)',
-  },
-  nameText: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: '500',
-    textAlign: 'center',
-  },
-  genresText: {
-    color: '#FFFAFA',
-    fontSize: 15,
-    textAlign: 'center',
-  },
-  backButton: {
-    color: '#fff',
-  },
-  safeAreaView: {
-    flex: 1,
-    paddingHorizontal: 15,
-    justifyContent: 'space-between',
-  },
-  showTitleContainer: {},
-  boxLabel: {
-    color: '#FFFAFA',
-    marginTop: 5,
-  },
-  boxValue: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: '500',
-  },
-  box: {
-    height: 100,
-    width: 100,
-    margin: 2,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  boxContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 20,
-  },
   summaryContainer: {
     paddingHorizontal: 15,
+  },
+  sectionHeaderContainer: {
+    marginHorizontal: 10,
+    marginVertical: 15,
+  },
+  episodeCardContainer: {
+    marginHorizontal: 10,
+    marginBottom: 10,
   },
 });

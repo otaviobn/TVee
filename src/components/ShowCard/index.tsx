@@ -11,7 +11,7 @@ import {
 type Props = {
   name: string;
   genres: string[];
-  coverImage?: string | undefined;
+  coverImage: string | undefined;
   onPress: () => void;
   containerStyle?: ViewStyle;
   premiered: string;

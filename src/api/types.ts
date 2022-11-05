@@ -15,4 +15,26 @@ export type Show = {
   rating: {
     average: number;
   };
+  schedule: {
+    time: string;
+    days: string[];
+  };
+};
+
+export type ShowEpisode = {
+  id: number;
+  url: string;
+  name: string;
+  season: number;
+  number: number;
+  airdate: string;
+  airtime: string;
+  rating: {
+    average: string;
+  };
+  image: {
+    medium: string;
+    original: string;
+  };
+  summary: string;
 };
