@@ -1,7 +1,7 @@
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ShowsStackParamList} from '@navigation';
-import {Route} from '@constants';
+import {Route, tokens} from '@constants';
 import {ScrollView, StyleSheet, useWindowDimensions, View} from 'react-native';
 import {EpisodeCover} from '@components';
 import {useEpisodeDetails} from './useEpisodeDetails';
@@ -24,6 +24,7 @@ export const EpisodeDetails = (props: Props) => {
   return (
     <ScrollView>
       <EpisodeCover
+        safeAreaStyle={styles.coverSafeArea}
         onBackPress={navigation.goBack}
         showName={showName}
         episodeName={episodeQuery.data?.name || ''}
@@ -45,6 +46,9 @@ export const EpisodeDetails = (props: Props) => {
 
 const styles = StyleSheet.create({
   summaryContainer: {
-    paddingHorizontal: 15,
+    paddingHorizontal: tokens.horizontalSpace,
+  },
+  coverSafeArea: {
+    paddingHorizontal: tokens.horizontalSpace,
   },
 });

@@ -4,7 +4,7 @@ import {
   FilterBox,
   ShowCard,
 } from '@components';
-import {Route} from '@constants';
+import {Route, tokens} from '@constants';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ShowsStackParamList} from '@navigation';
 import React from 'react';
@@ -90,10 +90,10 @@ export const ShowsList = (props: Props) => {
 
 const styles = StyleSheet.create({
   filterBoxContainer: {
-    marginHorizontal: 15,
+    marginHorizontal: tokens.horizontalSpace,
   },
   showCardContainer: {
-    paddingHorizontal: 15,
+    paddingHorizontal: tokens.horizontalSpace,
   },
   errorContainer: {
     flex: 1,

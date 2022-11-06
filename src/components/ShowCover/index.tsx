@@ -1,5 +1,14 @@
+import {FavoriteButton} from '../FavoriteButton';
 import React from 'react';
-import {ImageBackground, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 type Props = {
@@ -16,6 +25,9 @@ type Props = {
       }
     | undefined;
   onBackPress: () => void;
+  onFavoritePress: () => void;
+  isFavorite: boolean;
+  safeAreaStyle?: ViewStyle;
 };
 
 export const ShowCover = (props: Props) => {
@@ -26,8 +38,11 @@ export const ShowCover = (props: Props) => {
     premiered,
     average,
     onBackPress,
+    onFavoritePress,
+    isFavorite,
     coverImage,
     schedule,
+    safeAreaStyle,
   } = props;
 
   return (
@@ -38,10 +53,13 @@ export const ShowCover = (props: Props) => {
         source={{uri: coverImage}}
       />
       <View style={[StyleSheet.absoluteFill, styles.coverOverLay]} />
-      <SafeAreaView style={styles.safeAreaView}>
-        <Pressable onPress={onBackPress}>
-          <Text style={styles.backButton}>{'<'} Back</Text>
-        </Pressable>
+      <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
+        <View style={styles.headerButtonsContainer}>
+          <Pressable onPress={onBackPress}>
+            <Text style={styles.backButton}>{'<'} Back</Text>
+          </Pressable>
+          <FavoriteButton onPress={onFavoritePress} isFavorite={isFavorite} />
+        </View>
         <View>
           <Text style={styles.nameText}>{name}</Text>
           {!!schedule && (
@@ -74,7 +92,7 @@ export const ShowCover = (props: Props) => {
 
 const styles = StyleSheet.create({
   coverImageContainer: {
-    height: 500,
+    height: Dimensions.get('screen').height / 1.5,
     justifyContent: 'flex-end',
   },
   container: {
@@ -99,7 +117,6 @@ const styles = StyleSheet.create({
   },
   safeAreaView: {
     flex: 1,
-    paddingHorizontal: 15,
     justifyContent: 'space-between',
   },
   scheduleText: {
@@ -128,6 +145,11 @@ const styles = StyleSheet.create({
   boxContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
+    marginVertical: 10,
+  },
+  headerButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 15,
   },
 });

@@ -7,3 +7,4 @@ export * from './SectionHeader';
 export * from './EpisodeCard';
 export * from './EpisodeCover';
 export * from './Button';
+export * from './FavoriteButton';

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
 import {showsApiBaseUrl} from '@constants';
 import {type ShowEpisode, type Show} from './types';
 import groupBy from 'lodash.groupby';
@@ -40,4 +42,24 @@ export const getShow = async ({showId}: {showId: number}) => {
     ...showData,
     episodes: groupEpisodesBySeason(episodes),
   };
+};
+
+export const setFavoriteShow = async ({showId}: {showId: number}) => {
+  const userId = auth().currentUser?.uid;
+
+  if (userId) {
+    database().ref(`/users/${userId}/favorites`).push(showId);
+  }
+};
+
+export const removeFavoriteShow = async ({
+  favoriteId,
+}: {
+  favoriteId: string;
+}) => {
+  const userId = auth().currentUser?.uid;
+
+  if (userId) {
+    await database().ref(`/users/${userId}/favorites/${favoriteId}`).remove();
+  }
 };

@@ -1,4 +1,4 @@
-import {Route} from '@constants';
+import {Route, tokens} from '@constants';
 import {ShowsStackParamList} from '@navigation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
@@ -18,7 +18,7 @@ export const ShowDetails = (props: Props) => {
     },
   } = props;
 
-  const {showQuery} = useShowDetails({showId});
+  const {showQuery, favoriteShow, favoriteStatus} = useShowDetails({showId});
 
   const {width} = useWindowDimensions();
 
@@ -52,6 +52,8 @@ export const ShowDetails = (props: Props) => {
       ListHeaderComponent={
         <>
           <ShowCover
+            onFavoritePress={favoriteShow}
+            isFavorite={favoriteStatus.isFavorite}
             schedule={showQuery.data?.schedule}
             genres={showQuery.data?.genres}
             name={showQuery.data?.name}
@@ -60,6 +62,7 @@ export const ShowDetails = (props: Props) => {
             average={showQuery.data?.rating.average}
             coverImage={showQuery.data?.image.original}
             onBackPress={navigation.goBack}
+            safeAreaStyle={styles.coverSafeArea}
           />
           <View style={styles.summaryContainer}>
             <RenderHtml
@@ -78,14 +81,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   summaryContainer: {
-    paddingHorizontal: 15,
+    paddingHorizontal: tokens.horizontalSpace,
   },
   sectionHeaderContainer: {
-    marginHorizontal: 10,
+    marginHorizontal: tokens.horizontalSpace,
     marginVertical: 15,
   },
   episodeCardContainer: {
-    marginHorizontal: 10,
+    marginHorizontal: tokens.horizontalSpace,
     marginBottom: 10,
+  },
+  coverSafeArea: {
+    paddingHorizontal: tokens.horizontalSpace,
   },
 });

@@ -1,4 +1,5 @@
 import {Button} from '@components';
+import {tokens} from '@constants';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -22,7 +23,7 @@ export const Profile = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
+    padding: tokens.horizontalSpace,
   },
   logoutButton: {
     color: 'red',

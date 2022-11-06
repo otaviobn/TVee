@@ -1,5 +1,12 @@
 import React from 'react';
-import {ImageBackground, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 type Props = {
@@ -11,6 +18,7 @@ type Props = {
   airdate: string;
   average: number;
   onBackPress: () => void;
+  safeAreaStyle?: ViewStyle;
 };
 
 export const EpisodeCover = (props: Props) => {
@@ -23,6 +31,7 @@ export const EpisodeCover = (props: Props) => {
     airdate,
     average,
     onBackPress,
+    safeAreaStyle,
   } = props;
 
   return (
@@ -33,7 +42,7 @@ export const EpisodeCover = (props: Props) => {
         blurRadius={5}
       />
       <View style={[StyleSheet.absoluteFill, styles.coverOverLay]} />
-      <SafeAreaView style={styles.safeAreaView}>
+      <SafeAreaView style={safeAreaStyle}>
         <Pressable onPress={onBackPress}>
           <Text style={styles.backButton}>{'<'} Back</Text>
         </Pressable>
@@ -80,9 +89,6 @@ const styles = StyleSheet.create({
   showNameText: {
     color: '#FFFAFA',
     fontSize: 15,
-  },
-  safeAreaView: {
-    paddingHorizontal: 15,
   },
   titleText: {
     color: '#fff',
