@@ -1,5 +1,5 @@
 import auth from '@react-native-firebase/auth';
-import database, {FirebaseDatabaseTypes} from '@react-native-firebase/database';
+import database from '@react-native-firebase/database';
 import {getShow, removeFavoriteShow, setFavoriteShow} from '@api';
 import {useQuery} from '@tanstack/react-query';
 import {useCallback, useEffect, useState} from 'react';
@@ -18,7 +18,7 @@ export const useShowDetails = ({showId}: {showId: number}) => {
     if (userId) {
       const onFavoritesChange = database()
         .ref(`/users/${userId}/favorites`)
-        .on('value', (snapshot: FirebaseDatabaseTypes.DataSnapshot) => {
+        .on('value', snapshot => {
           if (snapshot.val()) {
             const favorite = Object.entries(snapshot.val()).find(
               ([, id]) => id === showId,

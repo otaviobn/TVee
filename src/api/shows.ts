@@ -63,3 +63,13 @@ export const removeFavoriteShow = async ({
     await database().ref(`/users/${userId}/favorites/${favoriteId}`).remove();
   }
 };
+
+export const getShowsByIds = async ({showIds}: {showIds: number[]}) => {
+  const showsPromises = showIds.map(showId =>
+    axios.get<Show>(`${showsApiBaseUrl}/shows/${showId}`),
+  );
+
+  const showResponses = await Promise.all(showsPromises);
+
+  return showResponses.map(showResponse => showResponse.data);
+};

@@ -16,6 +16,7 @@ const Tab = createBottomTabNavigator<MainTabsParamList>();
 export const MainTabs = () => {
   return (
     <Tab.Navigator
+      initialRouteName={Route.Shows}
       screenOptions={{
         headerShown: false,
       }}>
