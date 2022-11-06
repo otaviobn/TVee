@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "53174260998",
+    "project_id": "tvee-809d4",
+    "storage_bucket": "tvee-809d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53174260998:android:1fb0b413b3a0675a72ba87",
+        "android_client_info": {
+          "package_name": "com.tvee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "53174260998-27e78mmeln1cmf47cobolr95cim0moh9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tvee",
+            "certificate_hash": "6db753fa3d8baba815802430d7dc8c5f9e497e75"
+          }
+        },
+        {
+          "client_id": "53174260998-ksgseam08crjkac11peh8c7ikmf3giqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsESZFHS5AtaXBa-jtBZSmQfC3af1BQvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "53174260998-ksgseam08crjkac11peh8c7ikmf3giqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

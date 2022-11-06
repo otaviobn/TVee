@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>53174260998-svr6dkagpq8mtglnl9pca6pkq5na5pgr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.53174260998-svr6dkagpq8mtglnl9pca6pkq5na5pgr</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>53174260998-27e78mmeln1cmf47cobolr95cim0moh9.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDRJgDpvtWir0_1BEb33fNo3DDzl6bUL8I</string>
+	<key>GCM_SENDER_ID</key>
+	<string>53174260998</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tvee</string>
+	<key>PROJECT_ID</key>
+	<string>tvee-809d4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tvee-809d4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:53174260998:ios:5281b6ff3de5e8ff72ba87</string>
+</dict>
+</plist>
