@@ -24,7 +24,7 @@ export const ShowDetails = (props: Props) => {
 
   return (
     <SectionList
-      sections={showQuery.data?.show.episodes || []}
+      sections={showQuery.data?.episodes || []}
       stickySectionHeadersEnabled={false}
       style={styles.container}
       renderItem={({item}) => (
@@ -32,7 +32,7 @@ export const ShowDetails = (props: Props) => {
           onPress={() =>
             navigation.navigate(Route.EpisodeDetails, {
               episodeId: item.id,
-              showName: showQuery.data?.show.name || '',
+              showName: showQuery.data?.name || '',
             })
           }
           season={item.season}
@@ -52,19 +52,19 @@ export const ShowDetails = (props: Props) => {
       ListHeaderComponent={
         <>
           <ShowCover
-            schedule={showQuery.data?.show.schedule}
-            genres={showQuery.data?.show.genres}
-            name={showQuery.data?.show.name}
-            status={showQuery.data?.show.status}
-            premiered={showQuery.data?.show.premiered}
-            average={showQuery.data?.show.rating.average}
-            coverImage={showQuery.data?.show.image.original}
+            schedule={showQuery.data?.schedule}
+            genres={showQuery.data?.genres}
+            name={showQuery.data?.name}
+            status={showQuery.data?.status}
+            premiered={showQuery.data?.premiered}
+            average={showQuery.data?.rating.average}
+            coverImage={showQuery.data?.image.original}
             onBackPress={navigation.goBack}
           />
           <View style={styles.summaryContainer}>
             <RenderHtml
               contentWidth={width}
-              source={{html: showQuery.data?.show.summary || ''}}
+              source={{html: showQuery.data?.summary || ''}}
             />
           </View>
         </>

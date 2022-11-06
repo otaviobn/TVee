@@ -34,7 +34,7 @@ export const useShowsList = () => {
   return {
     isFetchingSearch: filteredShowsQuery.isFetching,
     shows: query
-      ? filteredShowsQuery.data?.shows
+      ? filteredShowsQuery.data
       : fullShowQuery.data?.pages.map(page => page.shows).flat(),
     setSearchTerm,
     searchTerm: query,

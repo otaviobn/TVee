@@ -25,9 +25,7 @@ export const searchShows = async ({query = ''}) => {
     `${showsApiBaseUrl}/search/shows?q=${query}`,
   );
 
-  return {
-    shows: data.map(item => item.show),
-  };
+  return data.map(item => item.show);
 };
 
 export const getShow = async ({showId}: {showId: number}) => {
@@ -39,9 +37,7 @@ export const getShow = async ({showId}: {showId: number}) => {
   );
 
   return {
-    show: {
-      ...showData,
-      episodes: groupEpisodesBySeason(episodes),
-    },
+    ...showData,
+    episodes: groupEpisodesBySeason(episodes),
   };
 };
