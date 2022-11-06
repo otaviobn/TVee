@@ -8,3 +8,4 @@ export * from './EpisodeCard';
 export * from './EpisodeCover';
 export * from './Button';
 export * from './FavoriteButton';
+export * from './BackButton';

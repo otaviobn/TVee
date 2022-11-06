@@ -4,17 +4,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 type Props = {
   onPress: () => void;
-  isFavorite: boolean;
 };
 
-export const FavoriteButton = (props: Props) => {
-  const {onPress, isFavorite} = props;
-
-  const iconType = isFavorite ? '' : '-outline';
+export const BackButton = (props: Props) => {
+  const {onPress} = props;
 
   return (
-    <Pressable onPress={onPress} style={styles.constainer}>
-      <Icon name={`heart${iconType}`} size={25} color={'red'} />
+    <Pressable onPress={onPress} style={[styles.constainer]}>
+      <Icon name={'arrow-back'} size={25} color={'#fff'} />
     </Pressable>
   );
 };

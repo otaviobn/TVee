@@ -3,13 +3,13 @@ import React from 'react';
 import {
   Dimensions,
   ImageBackground,
-  Pressable,
   StyleSheet,
   Text,
   View,
   ViewStyle,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {BackButton} from '../BackButton';
 
 type Props = {
   genres: string[] | undefined;
@@ -55,9 +55,7 @@ export const ShowCover = (props: Props) => {
       <View style={[StyleSheet.absoluteFill, styles.coverOverLay]} />
       <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
         <View style={styles.headerButtonsContainer}>
-          <Pressable onPress={onBackPress}>
-            <Text style={styles.backButton}>{'<'} Back</Text>
-          </Pressable>
+          <BackButton onPress={onBackPress} />
           <FavoriteButton onPress={onFavoritePress} isFavorite={isFavorite} />
         </View>
         <View>

@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  ViewStyle,
-} from 'react-native';
+import {ImageBackground, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {BackButton} from '../BackButton';
 
 type Props = {
   episodeName: string;
@@ -43,9 +37,9 @@ export const EpisodeCover = (props: Props) => {
       />
       <View style={[StyleSheet.absoluteFill, styles.coverOverLay]} />
       <SafeAreaView style={safeAreaStyle}>
-        <Pressable onPress={onBackPress}>
-          <Text style={styles.backButton}>{'<'} Back</Text>
-        </Pressable>
+        <View style={styles.buttonsHeaderContainer}>
+          <BackButton onPress={onBackPress} />
+        </View>
         <View style={styles.showDescriptionContainer}>
           <View style={styles.showNameContainer}>
             <Text style={styles.showNameText}>{showName}</Text>
@@ -127,5 +121,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 20,
     justifyContent: 'center',
+  },
+  buttonsHeaderContainer: {
+    alignSelf: 'flex-start',
   },
 });

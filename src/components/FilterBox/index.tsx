@@ -8,6 +8,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 type Props = {
   onChangeText: (value: string) => void;
@@ -30,6 +31,7 @@ export const FilterBox = (props: Props) => {
 
   return (
     <View style={[styles.constainer, containerStyle]}>
+      <Icon name={'search'} size={25} color={'grey'} />
       <TextInput
         value={value}
         style={styles.textInput}
@@ -39,7 +41,9 @@ export const FilterBox = (props: Props) => {
         <ActivityIndicator style={styles.activityIndicator} size={'small'} />
       ) : (
         <Pressable style={styles.clearSearchButton} onPress={() => setText('')}>
-          <Text>X</Text>
+          <Text>
+            <Icon name={'close'} size={25} color={'grey'} />
+          </Text>
         </Pressable>
       )}
     </View>
@@ -49,10 +53,11 @@ export const FilterBox = (props: Props) => {
 const styles = StyleSheet.create({
   constainer: {
     borderRadius: 5,
-    padding: 20,
+    padding: 10,
     marginVertical: 15,
     backgroundColor: '#fff',
     flexDirection: 'row',
+    alignItems: 'center',
   },
   activityIndicator: {
     marginLeft: 'auto',
@@ -62,5 +67,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
+    marginLeft: 10,
   },
 });

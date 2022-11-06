@@ -30,7 +30,7 @@ export const EpisodeDetails = (props: Props) => {
         episodeName={episodeQuery.data?.name || ''}
         season={episodeQuery.data?.season || 0}
         number={episodeQuery.data?.number || 0}
-        coverImage={episodeQuery.data?.image.original}
+        coverImage={episodeQuery.data?.image?.original}
         airdate={episodeQuery.data?.airdate || ''}
         average={episodeQuery.data?.rating.average || 0}
       />

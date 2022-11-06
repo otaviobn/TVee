@@ -7,6 +7,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 type Props = {
   name: string;
@@ -29,6 +30,9 @@ export const EpisodeCard = (props: Props) => {
           S{('0' + season).slice(-2)} | E{('0' + number).slice(-2)}
         </Text>
         <Text style={styles.nameText}>{name}</Text>
+      </View>
+      <View style={styles.arrowContainer}>
+        <Icon name={'chevron-forward'} size={25} color={'grey'} />
       </View>
     </Pressable>
   );
@@ -79,5 +83,9 @@ const styles = StyleSheet.create({
   extraInfoText: {
     fontSize: 15,
     color: '#A9A9A9',
+  },
+  arrowContainer: {
+    alignSelf: 'center',
+    marginRight: 10,
   },
 });

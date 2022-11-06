@@ -7,6 +7,7 @@ import {
   Pressable,
   ImageBackground,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 type Props = {
   name: string;
@@ -38,6 +39,9 @@ export const ShowCard = (props: Props) => {
           {new Date(premiered).getFullYear()}
         </Text>
         <Text style={styles.genreText}>{genres.join(', ')}</Text>
+      </View>
+      <View style={styles.arrowContainer}>
+        <Icon name={'chevron-forward'} size={25} color={'grey'} />
       </View>
     </Pressable>
   );
@@ -84,5 +88,8 @@ const styles = StyleSheet.create({
   },
   coverNotFoundText: {
     textAlign: 'center',
+  },
+  arrowContainer: {
+    marginLeft: 'auto',
   },
 });
