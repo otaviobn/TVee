@@ -1,5 +1,12 @@
 import React from 'react';
-import {ImageBackground, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {
+  Dimensions,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {BackButton} from '../BackButton';
 
@@ -29,14 +36,14 @@ export const EpisodeCover = (props: Props) => {
   } = props;
 
   return (
-    <View>
+    <View style={styles.coverImageContainer}>
       <ImageBackground
         source={{uri: coverImage}}
         style={StyleSheet.absoluteFill}
         blurRadius={5}
       />
       <View style={[StyleSheet.absoluteFill, styles.coverOverLay]} />
-      <SafeAreaView style={safeAreaStyle}>
+      <SafeAreaView style={[styles.safeArea, safeAreaStyle]}>
         <View style={styles.buttonsHeaderContainer}>
           <BackButton onPress={onBackPress} />
         </View>
@@ -49,11 +56,11 @@ export const EpisodeCover = (props: Props) => {
           </Text>
           <Text style={styles.nameText}>{episodeName}</Text>
           <Text style={styles.airdate}>Aired on {airdate}</Text>
-        </View>
-        <View style={styles.boxContainer}>
-          <View style={styles.box}>
-            <Text style={styles.boxValue}>{average}</Text>
-            <Text style={styles.boxLabel}>Rating</Text>
+          <View style={styles.boxContainer}>
+            <View style={styles.box}>
+              <Text style={styles.boxValue}>{average}</Text>
+              <Text style={styles.boxLabel}>Rating</Text>
+            </View>
           </View>
         </View>
       </SafeAreaView>
@@ -62,6 +69,9 @@ export const EpisodeCover = (props: Props) => {
 };
 
 const styles = StyleSheet.create({
+  coverImageContainer: {
+    height: Dimensions.get('screen').height / 2,
+  },
   backButton: {
     color: '#fff',
   },
@@ -124,5 +134,9 @@ const styles = StyleSheet.create({
   },
   buttonsHeaderContainer: {
     alignSelf: 'flex-start',
+  },
+  safeArea: {
+    flex: 1,
+    justifyContent: 'space-between',
   },
 });

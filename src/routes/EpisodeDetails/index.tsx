@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: tokens.horizontalSpace,
   },
   coverSafeArea: {
+    paddingVertical: tokens.verticalSpace,
     paddingHorizontal: tokens.horizontalSpace,
   },
 });
