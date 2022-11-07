@@ -5,7 +5,7 @@ import {showsApiBaseUrl} from '@constants';
 import {type ShowEpisode, type Show} from './types';
 import groupBy from 'lodash.groupby';
 
-const groupEpisodesBySeason = (episodes: ShowEpisode[]) => {
+export const groupEpisodesBySeason = (episodes: ShowEpisode[]) => {
   return Object.entries(groupBy(episodes, 'season')).map(([key, data]) => ({
     title: `Season ${key}`,
     data,
